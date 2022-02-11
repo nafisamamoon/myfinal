@@ -2,17 +2,16 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:project/patient-for-admin.dart';
-class OnePatientAdmin extends StatefulWidget {
-  //const OnePatientAdmin({ Key? key }) : super(key: key);
+class PatientForSearchAdmin extends StatefulWidget {
+  //const PatientForSearchAdmin({ Key? key }) : super(key: key);
 int? id;
-OnePatientAdmin({this.id});
+PatientForSearchAdmin({this.id});
   @override
-  _OnePatientAdminState createState() => _OnePatientAdminState();
+  _PatientForSearchAdminState createState() => _PatientForSearchAdminState();
 }
 
-class _OnePatientAdminState extends State<OnePatientAdmin> {
-    Future<List<Patient>>getOnePatient() async {
+class _PatientForSearchAdminState extends State<PatientForSearchAdmin> {
+   Future<List<Patient>>getOnePatient() async {
     final String _url='http://192.168.2.189:8000/api/onepatient/${widget.id}';
 var response=await http.get(Uri.parse(_url));
 var jsonData=jsonDecode(response.body);
@@ -27,7 +26,7 @@ return users;
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+     return Scaffold(
 body:  FutureBuilder(
                 future: getOnePatient(),
           builder: (context,AsyncSnapshot snapshot){
@@ -156,13 +155,14 @@ return Container(
                  ),
                ),
                ),
-  SizedBox(height: 22,),
+                    
+                      SizedBox(height: 22,),
   
       /////////////////////////////
   
        ElevatedButton(
                     onPressed:(){
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>PatientForAdmin()));
+                    Navigator.of(context).pop();
                     },
                     child: Text('Back',
                     style: TextStyle(fontSize: 30,wordSpacing: 2,fontWeight: FontWeight.w900),),

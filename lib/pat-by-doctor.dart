@@ -2,38 +2,44 @@ import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:project/admin-home.dart';
-import 'package:project/one-patient-admin.dart';
-import 'package:project/one-patient.dart';
-class PatientForAdmin extends StatefulWidget {
-  const PatientForAdmin({ Key? key }) : super(key: key);
-
-  @override
-  _PatientForAdminState createState() => _PatientForAdminState();
-}
-
-class _PatientForAdminState extends State<PatientForAdmin> {
-    Future<List<Patient>>getPatient() async {
-    final String _url='http://192.168.2.189:8000/api/allpatient';
+class PatByDoctor extends StatelessWidget {
+  const PatByDoctor({ Key? key }) : super(key: key);
+Future<List<Patient>>getDoctors() async {
+  int p=3;
+    final String _url='http://192.168.2.189:8000/api/pat-by-doctor/$p';
 var response=await http.get(Uri.parse(_url));
-var jsonData=jsonDecode(response.body);
-List<Patient> users=[];
-for(var u in jsonData){
- Patient user=new Patient(u['id'],u['name'],u['diagnosis'],u['patient_phone_number'],u['address'],u['age'],u['patient_companion_phone_number'],u['path']);
-  users.add(user);
+var jsonDatae=jsonDecode(response.body);
+print('///////////////////');
+print(jsonDatae[0][0]['id']);
+print('///////////////////');
+//print(jsonDatae);
+List<Patient> doctors=[];
+try{
+
+for(int o=0;o<1;o++){
+for(var u in jsonDatae){
+  Patient user=new Patient(u[0][o]['id'],u[0][o]['name'],u[0][o]['diagnosis'],u[0][o]['patient_phone_number'],u[0][o]['age'],u[0][o]['address'],u[0][o]['patient_companion_phone_number'],u[0][o]['path']);
+  doctors.add(user);
+  print(doctors);
 }
-print(users.length);
-print(users.toString());
-return users;
+}
+
+
+}catch(e){
+print(e);
+}
+
+print(doctors.length);
+return doctors;
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-   body:   Container(
+      body: Container(
         child: Column(
           children: [
-            FutureBuilder(
-              future:getPatient() ,
+ FutureBuilder(
+              future:getDoctors() ,
               builder: (context,AsyncSnapshot snapshot){
                 if(snapshot.data ==null)
 {
@@ -122,7 +128,7 @@ return users;
                     child: TextButton(
 
                  onPressed: (){
-Navigator.of(context).push(MaterialPageRoute(builder: (context)=>OnePatientAdmin(id:snapshot.data[i].id)));
+                   
                  },
   
                    child: Text('more information',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17),),
@@ -160,7 +166,7 @@ Navigator.of(context).push(MaterialPageRoute(builder: (context)=>OnePatientAdmin
   
     
               ),
-     
+  
      ],
   
               ),
@@ -180,24 +186,7 @@ Navigator.of(context).push(MaterialPageRoute(builder: (context)=>OnePatientAdmin
     ),
 );
               }
-              ),
-
-            SizedBox(height: 22,),
-  
-      /////////////////////////////
-  
-       ElevatedButton(
-                    onPressed:(){
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AdminHome()));
-                    },
-                    child: Text('Back',
-                    style: TextStyle(fontSize: 30,wordSpacing: 2,fontWeight: FontWeight.w900),),
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.teal,
-                      fixedSize: Size(250, 70),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))
-                    ),
-                    ),
+              )
           ],
         ),
       ),

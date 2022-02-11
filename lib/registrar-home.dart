@@ -6,6 +6,7 @@ import 'package:project/add-patient.dart';
 import 'package:project/login.dart';
 import 'package:project/one-patient.dart';
 import 'package:project/registrar-profile.dart';
+import 'package:project/search.dart';
 class RegistrarHome extends StatefulWidget {
   const RegistrarHome({ Key? key }) : super(key: key);
 
@@ -15,7 +16,7 @@ class RegistrarHome extends StatefulWidget {
 
 class _RegistrarHomeState extends State<RegistrarHome> {
    Future<List<Registrar>>getRegistrar() async {
-    final String _url='http://192.168.73.189:8000/api/getregistrar';
+    final String _url='http://192.168.2.189:8000/api/getregistrar';
 var response=await http.get(Uri.parse(_url));
 var jsonData=jsonDecode(response.body);
 List<Registrar> users=[];
@@ -28,7 +29,7 @@ print(users.toString());
 return users;
   }
     Future<List<Patient>>getPatient() async {
-    final String _url='http://192.168.73.189:8000/api/allpatient';
+    final String _url='http://192.168.2.189:8000/api/allpatient';
 var response=await http.get(Uri.parse(_url));
 var jsonData=jsonDecode(response.body);
 List<Patient> users=[];
@@ -90,7 +91,7 @@ return Container(
   
                radius: 90,
   
-               backgroundImage: CachedNetworkImageProvider('http://192.168.73.189:8000/uploads/'+snapshot.data[i].path)),
+               backgroundImage: CachedNetworkImageProvider('http://192.168.2.189:8000/uploads/'+snapshot.data[i].path)),
   
              ),
   
@@ -130,50 +131,61 @@ return Container(
              ],
            ),
          ),
-         SizedBox(height: 19,),
+         SizedBox(height: 24,),
          Row(
            children: [
              Container(
-               margin: EdgeInsets.only(left: 15),
-child: Icon(Icons.person),
+               margin: EdgeInsets.only(left: 60),
+child: Icon(Icons.person,color: Colors.teal,),
              ),
+             SizedBox(width: 24,),
              InkWell(
                onTap: (){
                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>RegistrarProfile()));
                },
                child: Container(
-                 margin: EdgeInsets.only(left: 90),
-                 child: Text('profile',style: TextStyle(fontSize: 17),)),
+                 //margin: EdgeInsets.only(left: 90),
+                 child: Text('Profile',style: TextStyle(fontSize: 17),)),
              ),
            ],
          ),
-          SizedBox(height: 19,),
+          SizedBox(height: 24,),
          Row(
            children: [
              Container(
-               margin: EdgeInsets.only(left: 15),
-child: Icon(Icons.sick),
+               margin: EdgeInsets.only(left: 60),
+child: Icon(Icons.sick,color: Colors.teal,),
              ),
+               SizedBox(width: 24,),
              InkWell(
                onTap: (){
                  Navigator.of(context).pop();
                },
                child: Container(
-                 margin: EdgeInsets.only(left: 90),
-                 child: Text('all patients',style: TextStyle(fontSize: 17),)),
+                // margin: EdgeInsets.only(left: 90),
+                 child: Text('All patients',style: TextStyle(fontSize: 17),)),
              ),
            ],
          ),
-          SizedBox(height: 19,),
+          SizedBox(height: 24,),
+      
          Row(
            children: [
              Container(
-               margin: EdgeInsets.only(left: 15),
-child: Icon(Icons.local_hospital)
+               margin: EdgeInsets.only(left: 60),
+child: Icon(Icons.search,color: Colors.teal,),
              ),
-            
+               SizedBox(width: 24,),
+             InkWell(
+               onTap: (){
+                 Navigator.of(context).push(MaterialPageRoute(builder: (context)=>search()));
+               },
+               child: Container(
+                // margin: EdgeInsets.only(left: 90),
+                 child: Text('search for patient',style: TextStyle(fontSize: 17),)),
+             ),
            ],
-         )
+         ),
           
            ],
            ),
@@ -232,7 +244,7 @@ child: Icon(Icons.local_hospital)
   
                       radius: 90,
   
-                  backgroundImage: CachedNetworkImageProvider('http://192.168.73.189:8000/uploads/'+snapshot.data[i].path)
+                  backgroundImage: CachedNetworkImageProvider('http://192.168.2.189:8000/uploads/'+snapshot.data[i].path)
 
                     ),
 
@@ -261,6 +273,14 @@ child: Icon(Icons.local_hospital)
   
                   //padding: EdgeInsets.only(top: 20),
 
+                  ),
+                  Container(
+            child:Text(snapshot.data[i].address,style: TextStyle(wordSpacing: 2, fontSize: 15
+  
+         ),),
+  
+  
+                  margin: EdgeInsets.only(left: 70), 
                   ),
   
                   Container(

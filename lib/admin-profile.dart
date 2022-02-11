@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:project/admin-home.dart';
+import 'package:project/edit-admin.dart';
 class AdminProfile extends StatefulWidget {
   const AdminProfile({ Key? key }) : super(key: key);
 
@@ -11,7 +13,7 @@ class AdminProfile extends StatefulWidget {
 
 class _AdminProfileState extends State<AdminProfile> {
 Future<List<Admin>>getAdmin() async {
-    final String _url='http://192.168.73.189:8000/api/getAdmin';
+    final String _url='http://192.168.2.189:8000/api/getAdmin';
 var response=await http.get(Uri.parse(_url));
 var jsonData=jsonDecode(response.body);
 List<Admin> users=[];
@@ -86,7 +88,7 @@ return Container(
   
                radius: 90,
   
-               backgroundImage: CachedNetworkImageProvider('http://192.168.73.189:8000/uploads/'+snapshot.data[i].path)),
+               backgroundImage: CachedNetworkImageProvider('http://192.168.2.189:8000/uploads/'+snapshot.data[i].path)),
   
              ),
            
@@ -175,7 +177,10 @@ return Container(
   
        ElevatedButton(
                     onPressed:(){
-                     
+                     Navigator.of(context).push(MaterialPageRoute(builder: (context)=>EditAdmin(
+  id: snapshot.data[i].id,age: snapshot.data[i].age,address: snapshot.data[i].address,name: snapshot.data[i].name,
+  path: snapshot.data[i].path,qual: snapshot.data[i].qualificatios, phone:snapshot.data[i].phone ,                  
+                     )));
                     },
                     child: Text('Edit',
                     style: TextStyle(fontSize: 30,wordSpacing: 2,fontWeight: FontWeight.w900),),
@@ -184,7 +189,23 @@ return Container(
                       fixedSize: Size(250, 70),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))
                     ),
-                    )
+                    ),
+                      SizedBox(height: 22,),
+  
+      /////////////////////////////
+  
+       ElevatedButton(
+                    onPressed:(){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AdminHome()));
+                    },
+                    child: Text('Back',
+                    style: TextStyle(fontSize: 30,wordSpacing: 2,fontWeight: FontWeight.w900),),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.blueAccent,
+                      fixedSize: Size(250, 70),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))
+                    ),
+                    ),
   
     ],
   

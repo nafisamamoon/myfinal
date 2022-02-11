@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:project/edit-patient.dart';
+import 'package:project/login.dart';
 class PatDetail extends StatefulWidget {
   //const PatDetail({ Key? key }) : super(key: key);
 int? id;
@@ -30,7 +31,7 @@ class _PatDetailState extends State<PatDetail> {
               
                radius: 90,
               
-               backgroundImage: CachedNetworkImageProvider('http://192.168.73.189:8000/uploads/'+widget.path!)),
+               backgroundImage: CachedNetworkImageProvider('http://192.168.2.189:8000/uploads/'+widget.path!)),
               
                          ),
            Column(
@@ -164,7 +165,21 @@ class _PatDetailState extends State<PatDetail> {
                       fixedSize: Size(250, 70),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))
                     ),
-                    )
+                    ),
+                    SizedBox(height: 18,),
+           ElevatedButton(
+                    onPressed:(){
+  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>login()));                   
+                    },
+                    child: Text('Back',
+                    style: TextStyle(fontSize: 30,wordSpacing: 2,fontWeight: FontWeight.w900),),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.blueAccent,
+                      fixedSize: Size(250, 70),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))
+                    ),
+                    ),
+                    
           ],
         ),
       ),

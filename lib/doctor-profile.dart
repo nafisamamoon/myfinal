@@ -2,16 +2,18 @@ import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:project/edit-doctor.dart';
 class DoctorProfile extends StatefulWidget {
   //const DoctorProfile({ Key? key }) : super(key: key);
 String? name;
+int? id;
 String? email;
 int? age;
 String? address;
 String? path;
 String? qualifications;
 String? phone_number;
-DoctorProfile({this.name,this.email,this.age,this.address,this.path,this.qualifications,this.phone_number});
+DoctorProfile({this.name,this.email,this.age,this.address,this.path,this.qualifications,this.phone_number,this.id});
  
   @override
   _DoctorProfileState createState() => _DoctorProfileState();
@@ -39,7 +41,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
             
                    radius: 90,
             
-                   backgroundImage: CachedNetworkImageProvider('http://192.168.73.189:8000/uploads/'+widget.path!)),
+                   backgroundImage: CachedNetworkImageProvider('http://192.168.2.189:8000/uploads/'+widget.path!)),
             
                  ),
                  SizedBox(height: 15,),

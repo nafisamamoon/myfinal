@@ -1,23 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:project/admin-home.dart';
-import 'package:project/edit-doctor.dart';
-class DoctorDetail extends StatefulWidget {
-  //const DoctorDetail({ Key? key }) : super(key: key);
-int? id;
-String? name;
-String? email;
+class test extends StatefulWidget {
+  //const test({ Key? key }) : super(key: key);
 int? age;
-String? address;
-String? path;
-String? qualifications;
-String? phone_number;
-DoctorDetail({this.id,this.name,this.email,this.address,this.age,this.path,this.phone_number,this.qualifications});
+String? name,path,phone,address,qualificatios;
+test({this.name,this.path,this.phone,this.age,this.address,this.qualificatios});
   @override
-  _DoctorDetailState createState() => _DoctorDetailState();
+  _testState createState() => _testState();
 }
 
-class _DoctorDetailState extends State<DoctorDetail> {
+class _testState extends State<test> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,7 +54,7 @@ class _DoctorDetailState extends State<DoctorDetail> {
                        leading: Icon(Icons.phone
                        ,color: Colors.teal,
                        ),
-                       title: Text(widget.phone_number!),
+                       title: Text(widget.phone!),
                        ),
                      ),
                      ),
@@ -73,23 +66,12 @@ class _DoctorDetailState extends State<DoctorDetail> {
                        leading: Icon(Icons.description
                        ,color: Colors.teal,
                        ),
-                       title: Text(widget.qualifications!),
+                       title: Text(widget.qualificatios!),
                        ),
                      ),
                      ),
         SizedBox(height: 12,),
               
-                   Container(
-                      
-                     child: Card(
-                       child: ListTile(
-                       leading: Icon(Icons.email
-                       ,color: Colors.teal,
-                       ),
-                       title: Text(widget.email!),
-                       ),
-                     ),
-                     ),
            SizedBox(height: 12,),
               
                    Container(
@@ -119,28 +101,12 @@ class _DoctorDetailState extends State<DoctorDetail> {
              SizedBox(height: 12,),
              ElevatedButton(
                       onPressed:(){
-                       Navigator.of(context).push(MaterialPageRoute(builder: (context)=>EditDoctor(
-        id: widget.id,age: widget.age,address: widget.address,name: widget.name,
-        path: widget.path,qual: widget.qualifications, phone:widget.phone_number ,                  
-                       )));
-                      },
-                      child: Text('Edit',
-                      style: TextStyle(fontSize: 30,wordSpacing: 2,fontWeight: FontWeight.w900),),
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.teal[300],
-                        fixedSize: Size(250, 70),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))
-                      ),
-                      ),
-                       SizedBox(height: 12,),
-             ElevatedButton(
-                      onPressed:(){
-                       Navigator.of(context).pop();
+                   Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AdminHome()));    
                       },
                       child: Text('Back',
                       style: TextStyle(fontSize: 30,wordSpacing: 2,fontWeight: FontWeight.w900),),
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.blueAccent,
+                        primary: Colors.teal[300],
                         fixedSize: Size(250, 70),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))
                       ),

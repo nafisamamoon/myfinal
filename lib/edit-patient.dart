@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:project/login.dart';
+import 'package:project/pat-detail.dart';
 import 'package:project/registrar-home.dart';
 class EditPatient extends StatefulWidget {
   //const EditPatient({ Key? key }) : super(key: key);
@@ -58,6 +59,7 @@ class _EditPatientState extends State<EditPatient> {
                     controller: _namecontroller,
                     decoration: InputDecoration(
                       labelText: 'Name',
+                       labelStyle: TextStyle(color: Colors.teal,fontSize: 20),
                       hintText: 'name',
                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
                     ),
@@ -68,6 +70,7 @@ class _EditPatientState extends State<EditPatient> {
                     controller: _agecontroller,
                      decoration: InputDecoration(
                          labelText: 'Age',
+                          labelStyle: TextStyle(color: Colors.teal,fontSize: 20),
                       hintText: 'age',
                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
                     ),
@@ -77,6 +80,7 @@ class _EditPatientState extends State<EditPatient> {
                     controller: _addresscontroller,
                      decoration: InputDecoration(
                          labelText: 'Address',
+                          labelStyle: TextStyle(color: Colors.teal,fontSize: 20),
                       hintText: 'address',
                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
                     ),
@@ -87,6 +91,7 @@ class _EditPatientState extends State<EditPatient> {
                     controller: _diagnosiscontroller,
                      decoration: InputDecoration(
                          labelText: 'Diagnosis',
+                          labelStyle: TextStyle(color: Colors.teal,fontSize: 20),
                       hintText: 'diagnosis',
                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
                     ),
@@ -97,6 +102,7 @@ class _EditPatientState extends State<EditPatient> {
                     controller: _patient_phone_numbercontroller,
                      decoration: InputDecoration(
                          labelText: 'patient_phone_number',
+                          labelStyle: TextStyle(color: Colors.teal,fontSize: 20),
                       hintText: 'patient_phone_number',
                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
                     ),
@@ -107,6 +113,7 @@ class _EditPatientState extends State<EditPatient> {
                     controller: _patient_companion_phone_numbercontroller,
                      decoration: InputDecoration(
                        labelText: 'patient_companion_phone_number',
+                       labelStyle: TextStyle(color: Colors.teal,fontSize: 20),
                       hintText: 'patient_companion_phone_number',
                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
                     ),
@@ -124,7 +131,22 @@ class _EditPatientState extends State<EditPatient> {
                       fixedSize: Size(250, 70),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))
                     ),
-                    )
+                    ),
+                    SizedBox(height: 18,),
+           ElevatedButton(
+                    onPressed:(){
+  Navigator.of(context).pop();                  
+                    },
+                    child: Text('Back',
+                    style: TextStyle(fontSize: 30,wordSpacing: 2,fontWeight: FontWeight.w900),),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.blueAccent,
+                      fixedSize: Size(250, 70),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))
+                    ),
+                    ),
+                    
+                    
                 ],
               ),)
             ],
@@ -141,7 +163,7 @@ class _EditPatientState extends State<EditPatient> {
     var patient_companion_phone_number=_patient_companion_phone_numbercontroller.text;
     var diagnosis=_diagnosiscontroller.text;
     if(fullname.isNotEmpty && age.isNotEmpty && address.isNotEmpty && patient_phone_number.isNotEmpty && patient_companion_phone_number.isNotEmpty && diagnosis.isNotEmpty){
-var url='http://192.168.73.189:8000/api/updatepatient/$userId';
+var url='http://192.168.2.189:8000/api/updatepatient/$userId';
 var bodyData=json.encode({
 'name':fullname,
 'age':age,

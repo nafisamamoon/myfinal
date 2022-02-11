@@ -340,7 +340,7 @@ class _DoctorHomeState extends State<DoctorHome> {
   pref.setString(Key,ValueKey);
 }
 Future<Map>getDoctor() async {
-    final String _url='http://192.168.73.189:8000/api/doctorinfo/${widget.id}';
+    final String _url='http://192.168.2.189:8000/api/doctorinfo/${widget.id}';
 var response=await http.get(Uri.parse(_url));
 Map<String,dynamic> map=jsonDecode(response.body);
 //print('=========================');
@@ -367,7 +367,8 @@ var phone_number;
          Navigator.of(context).push(MaterialPageRoute(builder: (context)=>login()));
        }, icon: Icon(Icons.logout))
       ],),
-        drawer: Drawer(
+        drawer:
+         Drawer(
        child: ListView(children: [
              FutureBuilder(
                 future: getDoctor(),
@@ -389,92 +390,181 @@ if(snapshot.data ==null)
   return Container(child: Center(child: Text('loadin'),
   ),
   );
-}   else return Container(
- color: Colors.teal,
- // margin: EdgeInsets.only(right: 7),
-child: Column(
-children: [
-  //Text(snapshot.data['email']),
-  //Text(snapshot.data['name'])
-  Container(
-  
-             margin: EdgeInsets.only(top: 10),
-  
-             child: CircleAvatar(
-  
-               radius: 90,
-  
-               backgroundImage: CachedNetworkImageProvider('http://192.168.73.189:8000/uploads/'+snapshot.data['path'])),
-  
+}   else return Column(
+  children: [
+        Container(
+    
+     //color: Colors.teal,
+    
+      margin: EdgeInsets.only(top: 20),
+    
+    child: Column(
+    
+    children: [
+    
+      //Text(snapshot.data['email']),
+    
+      //Text(snapshot.data['name'])
+    
+      Container(
+    
+      
+    
+                 margin: EdgeInsets.only(top: 10),
+    
+      
+    
+                 child: CircleAvatar(
+    
+      
+    
+                   radius: 90,
+    
+      
+    
+                   backgroundImage: CachedNetworkImageProvider('http://192.168.2.189:8000/uploads/'+snapshot.data['path'])),
+    
+      
+    
+                 ),
+    
+                 Container(
+    
+      
+    
+                  margin: EdgeInsets.only(left: 30),
+    
+      
+    
+        child: 
+    
+      
+    
+      Text(snapshot.data['name'],style: TextStyle(fontSize: 17,wordSpacing: 2,fontWeight: FontWeight.bold),)
+    
+      
+    
+                 ),
+    
+                   SizedBox(height: 9,),
+    
+      
+    
+                 Container(
+    
+      
+    
+        margin: EdgeInsets.only(left: 40),
+    
+      
+    
+        child: Text(snapshot.data['email'],style: TextStyle(fontSize: 17,wordSpacing: 2,fontWeight: FontWeight.bold),)),
+    
+       SizedBox(height: 19,),
+    
+            
+    
+    ],
+    
+    ),
+    
+    ),
+     Card(
+       child: Row(
+         
+                 children: [
+         
+                   Container(
+         
+                     margin: EdgeInsets.only(left: 70),
+         
+         child: Icon(Icons.person,color: Colors.teal,),
+         
+                   ),
+         SizedBox(width: 40,),
+                   InkWell(
+         
+                     onTap: (){
+         
+                     /*  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>DoctorDetail(
+         
+                         id: id,name:name,email: email,age: age,address: address,qualifications: qualificatios,path: path,phone_number: phone_number,
+         
+                       )));*/
+         
+                       Navigator.of(context).push(MaterialPageRoute(builder: (context)=>DoctorDetail(
+         
+                         name: snapshot.data['name'],email:snapshot.data['email'],age: snapshot.data['age'],
+         
+                         address: snapshot.data['address'],path: snapshot.data['path'],
+         
+                         qualifications: snapshot.data['qualifications'],phone_number: snapshot.data['phone_number'],
+         
+                         id:snapshot.data['id'] ,
+         
+                       )));
+         
+                     },
+         
+                     child: Container(
+         
+                       margin: EdgeInsets.only(top: 20),
+         
+                       child: Text('Profile',style: TextStyle(fontSize: 17),)),
+         
+                   ),
+                   
+         
+                 ],
+         
+               ),
+     ),
+             Card(
+               child: Row(
+                 
+                 children: [
+                 
+                   Container(
+                 
+                     margin: EdgeInsets.only(left: 70),
+                 
+                 child: Icon(Icons.sick,color: Colors.teal,),
+                 
+                   ),
+                 SizedBox(width: 40,),
+                   InkWell(
+                 
+                     onTap: (){
+                 
+                     /*  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>DoctorDetail(
+                 
+                         id: id,name:name,email: email,age: age,address: address,qualifications: qualificatios,path: path,phone_number: phone_number,
+                 
+                       )));*/
+                 
+                       Navigator.of(context).pop();
+                 
+                     },
+                 
+                     child: Container(
+                 
+                       margin: EdgeInsets.only(top: 20),
+                 
+                       child: Text('All patient',style: TextStyle(fontSize: 17),)),
+                 
+                   ),
+                   
+                 
+                 ],
+                 
+               ),
              ),
-             Container(
-  
-              margin: EdgeInsets.only(left: 30),
-  
-    child: 
-  
-  Text(snapshot.data['name'],style: TextStyle(fontSize: 17,wordSpacing: 2,fontWeight: FontWeight.bold),)
-  
-             ),
-               SizedBox(height: 9,),
-  
-             Container(
-  
-    margin: EdgeInsets.only(left: 40),
-  
-    child: Text(snapshot.data['email'],style: TextStyle(fontSize: 17,wordSpacing: 2,fontWeight: FontWeight.bold),)),
-   SizedBox(height: 19,),
-         Row(
-           children: [
-             Container(
-               margin: EdgeInsets.only(left: 15),
-child: Icon(Icons.person),
-             ),
-             InkWell(
-               onTap: (){
-               /*  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>DoctorDetail(
-                   id: id,name:name,email: email,age: age,address: address,qualifications: qualificatios,path: path,phone_number: phone_number,
-                 )));*/
-                 Navigator.of(context).push(MaterialPageRoute(builder: (context)=>DoctorDetail(
-                   name: snapshot.data['name'],email:snapshot.data['email'],age: snapshot.data['age'],
-                   address: snapshot.data['address'],path: snapshot.data['path'],
-                   qualifications: snapshot.data['qualifications'],phone_number: snapshot.data['phone_number'],
-                 )));
-               },
-               child: Container(
-                 margin: EdgeInsets.only(left: 90),
-                 child: Text('profile',style: TextStyle(fontSize: 17),)),
-             ),
-           ],
-         ),
-],
-),
+            
+  ],
 );
 
        }
              ),
-             /*  SizedBox(height: 19,),
-         Row(
-           children: [
-             Container(
-               margin: EdgeInsets.only(left: 15),
-child: Icon(Icons.person),
-             ),
-             InkWell(
-               onTap: (){
-               /*  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>DoctorDetail(
-                   id: id,name:name,email: email,age: age,address: address,qualifications: qualificatios,path: path,phone_number: phone_number,
-                 )));*/
-                 Navigator.of(context).push(MaterialPageRoute(builder: (context)=>DoctorProfile(
-                   name: name,email: email,age: age,address: address,path: path,qualifications: qualificatios,phone_number: phone_number,
-                 )));
-               },
-               child: Container(
-                 margin: EdgeInsets.only(left: 90),
-                 child: Text('profile',style: TextStyle(fontSize: 17),)),
-             ),
-           ],
-         ),*/
           
            ],
            ),
@@ -496,7 +586,7 @@ child: Column(
           child:  CircleAvatar(
                   radius: 90,
   
-               backgroundImage: CachedNetworkImageProvider('http://192.168.73.189:8000/uploads/'+'${widget.data[i]['path']}')
+               backgroundImage: CachedNetworkImageProvider('http://192.168.2.189:8000/uploads/'+'${widget.data[i]['path']}')
                   
                 ),
         ),
