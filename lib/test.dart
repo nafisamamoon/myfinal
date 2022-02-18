@@ -39,7 +39,8 @@ class _testState extends State<test> {
                        leading: Icon(Icons.person
                        ,color: Colors.teal,
                        ),
-                       title: Text(widget.name!),
+                       title:Text('Name',style: TextStyle(color: Colors.grey)),
+                       subtitle: Text(widget.name!,style: TextStyle(color: Colors.black)),
                        ),
                      ),
                      ),
@@ -54,7 +55,8 @@ class _testState extends State<test> {
                        leading: Icon(Icons.phone
                        ,color: Colors.teal,
                        ),
-                       title: Text(widget.phone!),
+                       title:Text('Phone number',style: TextStyle(color: Colors.grey)),
+                       subtitle: Text(widget.phone!,style: TextStyle(color: Colors.black)),
                        ),
                      ),
                      ),
@@ -66,7 +68,8 @@ class _testState extends State<test> {
                        leading: Icon(Icons.description
                        ,color: Colors.teal,
                        ),
-                       title: Text(widget.qualificatios!),
+                       title:Text('Qualifications',style: TextStyle(color: Colors.grey)),
+                       subtitle: Text(widget.qualificatios!,style: TextStyle(color: Colors.black)),
                        ),
                      ),
                      ),
@@ -81,7 +84,8 @@ class _testState extends State<test> {
                        leading: Icon(Icons.home
                        ,color: Colors.teal,
                        ),
-                       title: Text(widget.address!),
+                       title:Text('Home address',style: TextStyle(color: Colors.grey)),
+                       subtitle: Text(widget.address!,style: TextStyle(color: Colors.black)),
                        ),
                      ),
                      ),
@@ -94,7 +98,8 @@ class _testState extends State<test> {
                        leading: Icon(Icons.calculate
                        ,color: Colors.teal,
                        ),
-                       title: Text(widget.age.toString()),
+                       title:Text('Age',style: TextStyle(color: Colors.grey)),
+                       subtitle: Text(widget.age.toString(),style: TextStyle(color: Colors.black)),
                        ),
                      ),
                      ),

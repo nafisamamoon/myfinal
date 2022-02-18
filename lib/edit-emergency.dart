@@ -4,17 +4,18 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:project/admin-profile.dart';
+import 'package:project/emergancy-profile.dart';
 import 'package:project/registrar-profile.dart';
-class EditRegistrar extends StatefulWidget {
-  //const EditRegistrar({ Key? key }) : super(key: key);
+class EditEmergency extends StatefulWidget {
+  //const EditEmergency({ Key? key }) : super(key: key);
 int? id,age;
 String? name,path,address,qual,phone;
-EditRegistrar({this.id,this.address,this.age,this.name,this.path,this.qual,this.phone});
+EditEmergency({this.id,this.address,this.age,this.name,this.path,this.qual,this.phone});
   @override
-  _EditRegistrarState createState() => _EditRegistrarState();
+  _EditEmergencyState createState() => _EditEmergencyState();
 }
 
-class _EditRegistrarState extends State<EditRegistrar> {
+class _EditEmergencyState extends State<EditEmergency> {
    TextEditingController _age=TextEditingController();
   TextEditingController _name=TextEditingController();
   TextEditingController _address=TextEditingController();
@@ -73,8 +74,8 @@ class _EditRegistrarState extends State<EditRegistrar> {
                   controller: _address,
                   decoration: InputDecoration(
                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-                    labelText: 'Address',
-                    hintText: 'address'
+                    labelText: 'Location',
+                    hintText: 'Location'
                   ),
                 ),
               ),
@@ -87,8 +88,8 @@ class _EditRegistrarState extends State<EditRegistrar> {
                   decoration: InputDecoration(
                     
                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-                    labelText: 'qualifications',
-                    hintText: 'qualification'
+                    labelText: 'History of the unit',
+                    hintText: 'History of the unit'
                   ),
                 ),
              ),
@@ -125,7 +126,7 @@ Navigator.of(context).push(MaterialPageRoute(builder: (context)=>RegistrarProfil
   ],
   title: Text('Success',style: TextStyle(color: Colors.green),),
   
-  content: Text('The registrar profile edited successfully'),
+  content: Text('The emergency profile edited successfully'),
 );
              });
                     }
@@ -151,7 +152,7 @@ Navigator.of(context).push(MaterialPageRoute(builder: (context)=>RegistrarProfil
   
        ElevatedButton(
                     onPressed:(){
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>RegistrarProfile()));
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>EmergancyProfile()));
                     },
                     child: Text('Back',
                     style: TextStyle(fontSize: 30,wordSpacing: 2,fontWeight: FontWeight.w900),),
@@ -221,7 +222,7 @@ void takePhoto(ImageSource source)async{
 }
 Future<http.StreamedResponse> patchImage()async{
   
- var url='http://192.168.2.189:8000/api/edit-registrar/$uid';
+ var url='http://192.168.2.189:8000/api/edit-emergency/$uid';
  var request=http.MultipartRequest('POST',Uri.parse(url));
  request.files.add(await http.MultipartFile.fromPath("path",_imageFile!.path));
  //request.files.add(await http.MultipartFile.fromPath("path",_imageFile== null?CachedNetworkImageProvider('http://192.168.2.189:8000/uploads/'+widget.path!) as String  :_imageFile!.path) );
@@ -246,7 +247,7 @@ var response=await request.send();
 return response;
 }
  Future<http.StreamedResponse> edit()async{
- var url='http://192.168.2.189:8000/api/edit-registrardata/$uid';
+ var url='http://192.168.2.189:8000/api/edit-emergencydata/$uid';
  var request=http.MultipartRequest('POST',Uri.parse(url));
  request.fields.addAll({
 'name':_name.text,
@@ -269,14 +270,14 @@ if(response.statusCode == 200){
 return AlertDialog(
   actions: [
     TextButton(onPressed: (){
-Navigator.of(context).push(MaterialPageRoute(builder: (context)=>RegistrarProfile()));
+Navigator.of(context).push(MaterialPageRoute(builder: (context)=>EmergancyProfile()));
     },
      child: Text('OK')
      )
   ],
   title: Text('Success',style: TextStyle(color: Colors.green),),
   
-  content: Text('The registrar profile edited successfully'),
+  content: Text('The emergency profile edited successfully'),
 );
              });
 }

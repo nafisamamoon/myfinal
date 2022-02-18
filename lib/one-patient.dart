@@ -34,7 +34,7 @@ body:  FutureBuilder(
           builder: (context,AsyncSnapshot snapshot){
 if(snapshot.data ==null)
 {
-  return Container(child: Center(child: Text('loadin'),
+  return Container(child: Center(child: CircularProgressIndicator(),
   ),
   );
 }   else return 
@@ -77,7 +77,8 @@ return Container(
                  leading: Icon(Icons.person
                  ,color: Colors.teal,
                  ),
-                 title: Text(snapshot.data[i].name),
+                 title:Text('Name',style: TextStyle(color: Colors.grey)),
+                 subtitle: Text(snapshot.data[i].name,style: TextStyle(color: Colors.black)),
                  ),
                ),
                ),
@@ -92,7 +93,8 @@ return Container(
                  leading: Icon(Icons.phone
                  ,color: Colors.teal,
                  ),
-                 title: Text(snapshot.data[i].patient_phone_number),
+                 title:Text('Patient_phone_number',style: TextStyle(color: Colors.grey)),
+                 subtitle: Text(snapshot.data[i].patient_phone_number,style: TextStyle(color: Colors.black)),
                  ),
                ),
                ),
@@ -105,7 +107,8 @@ return Container(
                  leading: Icon(Icons.phone
                  ,color: Colors.teal,
                  ),
-                 title: Text(snapshot.data[i].patient_companion_phone_number),
+                 title:Text('Patient_companion_phone_number',style: TextStyle(color: Colors.grey)),
+                 subtitle: Text(snapshot.data[i].patient_companion_phone_number,style: TextStyle(color: Colors.black)),
                  ),
                ),
                ),
@@ -126,7 +129,8 @@ return Container(
                  leading: Icon(Icons.description
                  ,color: Colors.teal,
                  ),
-                 title: Text(snapshot.data[i].diagnosis),
+                 title:Text('Diagnosis',style: TextStyle(color: Colors.grey)),
+                 subtitle: Text(snapshot.data[i].diagnosis,style: TextStyle(color: Colors.black)),
                  ),
                ),
                ),
@@ -139,7 +143,8 @@ return Container(
                  leading: Icon(Icons.calculate
                  ,color: Colors.teal,
                  ),
-                 title: Text(snapshot.data[i].age.toString())
+                 title:Text('Age',style: TextStyle(color: Colors.grey)),
+                 subtitle: Text(snapshot.data[i].age.toString(),style: TextStyle(color: Colors.black))
                  ),
                ),
                ),
@@ -153,7 +158,8 @@ return Container(
                  leading: Icon(Icons.home
                  ,color: Colors.teal,
                  ),
-                 title: Text(snapshot.data[i].address),
+                 title:Text('Home address',style: TextStyle(color: Colors.grey)),
+                 subtitle: Text(snapshot.data[i].address,style: TextStyle(color: Colors.black)),
                  ),
                ),
                ),

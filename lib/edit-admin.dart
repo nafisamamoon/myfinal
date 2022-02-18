@@ -57,6 +57,7 @@ class _EditAdminState extends State<EditAdmin> {
               SizedBox(height: 15,),
                Container(
                  child: TextFormField(
+                   keyboardType: TextInputType.number,
                   controller: _age,
                   decoration: InputDecoration(
                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
@@ -93,6 +94,7 @@ class _EditAdminState extends State<EditAdmin> {
                  SizedBox(height: 15,),
              Container(
                child: TextFormField(
+                 keyboardType: TextInputType.number,
                   controller: _phone_number,
                   decoration: InputDecoration(
                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
@@ -110,7 +112,21 @@ class _EditAdminState extends State<EditAdmin> {
                     if(imageResponse.statusCode==200){
                       print('//////////////////////////');
                       print('success');
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AdminProfile()));
+                      //Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AdminProfile()));
+                       showDialog(context: context, builder:(context){
+return AlertDialog(
+  actions: [
+    TextButton(onPressed: (){
+Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AdminProfile()));
+    },
+     child: Text('OK')
+     )
+  ],
+  title: Text('Success',style: TextStyle(color: Colors.green),),
+  
+  content: Text('The admin edited successfully'),
+);
+             });
                     }
         
                   else{
@@ -248,7 +264,21 @@ return response;
  });
 var response=await request.send();
 if(response.statusCode == 200){
-  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AdminProfile()));
+  //Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AdminProfile()));
+  showDialog(context: context, builder:(context){
+return AlertDialog(
+  actions: [
+    TextButton(onPressed: (){
+Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AdminProfile()));
+    },
+     child: Text('OK')
+     )
+  ],
+  title: Text('Success',style: TextStyle(color: Colors.green),),
+  
+  content: Text('The admin edited successfully'),
+);
+             });
 }
 else{
   print('fail');

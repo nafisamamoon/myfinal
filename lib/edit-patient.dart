@@ -17,7 +17,7 @@ class _EditPatientState extends State<EditPatient> {
   final TextEditingController _namecontroller=new TextEditingController();
   final TextEditingController _agecontroller=new TextEditingController();
   final TextEditingController _addresscontroller=new TextEditingController();
-  final TextEditingController _diagnosiscontroller=new TextEditingController();
+  //final TextEditingController _diagnosiscontroller=new TextEditingController();
   final TextEditingController _patient_phone_numbercontroller=new TextEditingController();
   final TextEditingController _patient_companion_phone_numbercontroller=new TextEditingController();
   String userId='';
@@ -38,7 +38,7 @@ class _EditPatientState extends State<EditPatient> {
       _namecontroller.text=widget.name!;
      _agecontroller.text=widget.age.toString();
       _addresscontroller.text=widget.address!;
-       _diagnosiscontroller.text=widget.diagnosis!;
+      // _diagnosiscontroller.text=widget.diagnosis!;
         _patient_phone_numbercontroller.text=widget.patient_phone_number!;
          _patient_companion_phone_numbercontroller.text=widget.patient_companion_phone_number!;
    });
@@ -49,7 +49,7 @@ class _EditPatientState extends State<EditPatient> {
      
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.only(top: 70),
+          margin: EdgeInsets.only(top: 90),
           child: Column(
             children: [
               Form(child: Column(
@@ -86,7 +86,7 @@ class _EditPatientState extends State<EditPatient> {
                     ),
                   ),
                     SizedBox(height: 15,),
-                  TextFormField(
+                 /* TextFormField(
                     maxLines: 10,
                     controller: _diagnosiscontroller,
                      decoration: InputDecoration(
@@ -95,7 +95,7 @@ class _EditPatientState extends State<EditPatient> {
                       hintText: 'diagnosis',
                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
                     ),
-                  ),
+                  ),*/
                     SizedBox(height: 15,),
                   TextFormField(
                      keyboardType:TextInputType.number ,
@@ -121,8 +121,8 @@ class _EditPatientState extends State<EditPatient> {
                     SizedBox(height: 15,),
                   ElevatedButton(
                     onPressed:(){
-                   editUser();
-                   Navigator.of(context).push(MaterialPageRoute(builder: (context)=>login()));
+                  editUser();
+                   //Navigator.of(context).push(MaterialPageRoute(builder: (context)=>login()));
                     },
                     child: Text('Edit',
                     style: TextStyle(fontSize: 30,wordSpacing: 2,fontWeight: FontWeight.w900),),
@@ -161,14 +161,14 @@ class _EditPatientState extends State<EditPatient> {
     var address=_addresscontroller.text;
     var patient_phone_number=_patient_phone_numbercontroller.text;
     var patient_companion_phone_number=_patient_companion_phone_numbercontroller.text;
-    var diagnosis=_diagnosiscontroller.text;
-    if(fullname.isNotEmpty && age.isNotEmpty && address.isNotEmpty && patient_phone_number.isNotEmpty && patient_companion_phone_number.isNotEmpty && diagnosis.isNotEmpty){
+    //var diagnosis=_diagnosiscontroller.text;
+    if(fullname.isNotEmpty && age.isNotEmpty && address.isNotEmpty && patient_phone_number.isNotEmpty && patient_companion_phone_number.isNotEmpty){
 var url='http://192.168.2.189:8000/api/updatepatient/$userId';
 var bodyData=json.encode({
 'name':fullname,
 'age':age,
 'address':address,
-'diagnosis':diagnosis,
+//'diagnosis':diagnosis,
 'patient_phone_number':patient_phone_number,
 'patient_companion_phone_number':patient_companion_phone_number
 });
@@ -182,8 +182,22 @@ var response=await http.put(
 );
 try{
 if(response.statusCode == 200){
-  var mesage=json.decode(response.body);
-  print(mesage);
+  //var mesage=json.decode(response.body);
+  //print(mesage);
+  showDialog(context: context, builder:(context){
+return AlertDialog(
+  actions: [
+    TextButton(onPressed: (){
+Navigator.of(context).push(MaterialPageRoute(builder: (context)=>login()));
+    },
+     child: Text('OK')
+     )
+  ],
+  title: Text('Success',style: TextStyle(color: Colors.green),),
+  
+  content: Text('The patient edited successfully'),
+);
+             });
 }else
 {
   print('fail');

@@ -1,17 +1,21 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-class PatientForSearch extends StatefulWidget {
-  //const PatientForSearch({ Key? key }) : super(key: key);
+import 'package:project/edit-patient-emergency.dart';
+import 'package:project/edit-patient.dart';
+import 'package:project/emergancy-home.dart';
+import 'package:project/registrar-home.dart';
+class OnePatientEmergency extends StatefulWidget {
+  //const OnePatientEmergency({ Key? key }) : super(key: key);
 int? id;
-PatientForSearch({this.id});
+OnePatientEmergency({this.id});
   @override
-  _PatientForSearchState createState() => _PatientForSearchState();
+  _OnePatientEmergencyState createState() => _OnePatientEmergencyState();
 }
 
-class _PatientForSearchState extends State<PatientForSearch> {
-  Future<List<Patient>>getOnePatient() async {
+class _OnePatientEmergencyState extends State<OnePatientEmergency> {
+   Future<List<Patient>>getOnePatient() async {
     final String _url='http://192.168.2.189:8000/api/onepatient/${widget.id}';
 var response=await http.get(Uri.parse(_url));
 var jsonData=jsonDecode(response.body);
@@ -32,7 +36,7 @@ body:  FutureBuilder(
           builder: (context,AsyncSnapshot snapshot){
 if(snapshot.data ==null)
 {
-  return Container(child: Center(child: CircularProgressIndicator(),
+  return Container(child: Center(child:CircularProgressIndicator(),
   ),
   );
 }   else return 
@@ -75,8 +79,8 @@ return Container(
                  leading: Icon(Icons.person
                  ,color: Colors.teal,
                  ),
-                 title:Text('Name',style: TextStyle(color: Colors.grey)),
-                 subtitle: Text(snapshot.data[i].name,style: TextStyle(color: Colors.black)),
+               title: Text('Name',style: TextStyle(color: Colors.grey),),
+                     subtitle:Text(snapshot.data[i].name,style: TextStyle(color: Colors.black)) ,
                  ),
                ),
                ),
@@ -91,7 +95,7 @@ return Container(
                  leading: Icon(Icons.phone
                  ,color: Colors.teal,
                  ),
-                  title:Text('Patient_phone_number',style: TextStyle(color: Colors.grey)),
+                 title: Text('Patient_Phone_Number',style: TextStyle(color: Colors.grey),),
                  subtitle: Text(snapshot.data[i].patient_phone_number,style: TextStyle(color: Colors.black)),
                  ),
                ),
@@ -105,7 +109,7 @@ return Container(
                  leading: Icon(Icons.phone
                  ,color: Colors.teal,
                  ),
-                  title:Text('Patient_companion_phone_number',style: TextStyle(color: Colors.grey)),
+                  title: Text('Patient_Companion_Phone_Number',style: TextStyle(color: Colors.grey),),
                  subtitle: Text(snapshot.data[i].patient_companion_phone_number,style: TextStyle(color: Colors.black)),
                  ),
                ),
@@ -127,8 +131,8 @@ return Container(
                  leading: Icon(Icons.description
                  ,color: Colors.teal,
                  ),
-                  title:Text('Diagnosis',style: TextStyle(color: Colors.grey)),
-                 subtitle: Text(snapshot.data[i].diagnosis,style: TextStyle(color: Colors.black)),
+                  title: Text('Diagnosis',style: TextStyle(color: Colors.grey),),
+               subtitle: Text(snapshot.data[i].diagnosis,style: TextStyle(color: Colors.black)),
                  ),
                ),
                ),
@@ -141,7 +145,7 @@ return Container(
                  leading: Icon(Icons.calculate
                  ,color: Colors.teal,
                  ),
-                  title:Text('Age',style: TextStyle(color: Colors.grey)),
+                 title: Text('Age',style: TextStyle(color: Colors.grey),),
                  subtitle: Text(snapshot.data[i].age.toString(),style: TextStyle(color: Colors.black))
                  ),
                ),
@@ -156,24 +160,51 @@ return Container(
                  leading: Icon(Icons.home
                  ,color: Colors.teal,
                  ),
-                  title:Text('Home address',style: TextStyle(color: Colors.grey)),
+                 title: Text('Address',style: TextStyle(color: Colors.grey),),
                  subtitle: Text(snapshot.data[i].address,style: TextStyle(color: Colors.black)),
                  ),
                ),
                ),
-                    
+  
+      SizedBox(height: 22,),
+  
+      /////////////////////////////
+  
+       ElevatedButton(
+                  /*  onPressed:(){
+                     Navigator.of(context).push(MaterialPageRoute(builder: (context)=>EditPatientEmergency(
+ id:snapshot.data[i].id,name: snapshot.data[i].name,age: snapshot.data[i].age,address: snapshot.data[i].address, 
+ patient_companion_phone_number: snapshot.data[i].patient_companion_phone_number,patient_phone_number:snapshot.data[i].patient_phone_number ,   
+ diagnosis: snapshot.data[i].diagnosis,                  
+                     )));
+                    },*/
+                    onPressed:(){
+                     Navigator.of(context).push(MaterialPageRoute(builder: (context)=>EditPatientEmergency(
+ id:snapshot.data[i].id,
+     diagnosis: snapshot.data[i].diagnosis,                  
+                     )));
+                    },
+                    child: Text('Edit',
+                    style: TextStyle(fontSize: 30,wordSpacing: 2,fontWeight: FontWeight.w900),),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.teal[300],
+                      fixedSize: Size(250, 70),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))
+                    ),
+                    ),
+                 
                       SizedBox(height: 22,),
   
       /////////////////////////////
   
        ElevatedButton(
                     onPressed:(){
-                    Navigator.of(context).pop();
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>EmergancyHome()));
                     },
                     child: Text('Back',
                     style: TextStyle(fontSize: 30,wordSpacing: 2,fontWeight: FontWeight.w900),),
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.teal,
+                      primary: Colors.blueAccent,
                       fixedSize: Size(250, 70),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))
                     ),
@@ -190,6 +221,7 @@ return Container(
              ),
     );
   }
+  
 }
 class Patient{
   final int id,age;

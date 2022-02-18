@@ -46,7 +46,8 @@ class _DoctorDetailState extends State<DoctorDetail> {
                        leading: Icon(Icons.person
                        ,color: Colors.teal,
                        ),
-                       title: Text(widget.name!),
+                        title:Text('Name',style: TextStyle(color: Colors.grey)),
+                       subtitle: Text(widget.name!,style: TextStyle(color: Colors.black)),
                        ),
                      ),
                      ),
@@ -61,7 +62,8 @@ class _DoctorDetailState extends State<DoctorDetail> {
                        leading: Icon(Icons.phone
                        ,color: Colors.teal,
                        ),
-                       title: Text(widget.phone_number!),
+                        title:Text('Phone number',style: TextStyle(color: Colors.grey)),
+                       subtitle: Text(widget.phone_number!,style: TextStyle(color: Colors.black)),
                        ),
                      ),
                      ),
@@ -73,7 +75,8 @@ class _DoctorDetailState extends State<DoctorDetail> {
                        leading: Icon(Icons.description
                        ,color: Colors.teal,
                        ),
-                       title: Text(widget.qualifications!),
+                        title:Text('Qualifications',style: TextStyle(color: Colors.grey)),
+                       subtitle: Text(widget.qualifications!,style: TextStyle(color: Colors.black)),
                        ),
                      ),
                      ),
@@ -86,7 +89,8 @@ class _DoctorDetailState extends State<DoctorDetail> {
                        leading: Icon(Icons.email
                        ,color: Colors.teal,
                        ),
-                       title: Text(widget.email!),
+                        title:Text('E-mail',style: TextStyle(color: Colors.grey)),
+                       subtitle: Text(widget.email!,style: TextStyle(color: Colors.black)),
                        ),
                      ),
                      ),
@@ -99,7 +103,8 @@ class _DoctorDetailState extends State<DoctorDetail> {
                        leading: Icon(Icons.home
                        ,color: Colors.teal,
                        ),
-                       title: Text(widget.address!),
+                        title:Text('Home address',style: TextStyle(color: Colors.grey)),
+                       subtitle: Text(widget.address!,style: TextStyle(color: Colors.black)),
                        ),
                      ),
                      ),
@@ -112,7 +117,8 @@ class _DoctorDetailState extends State<DoctorDetail> {
                        leading: Icon(Icons.calculate
                        ,color: Colors.teal,
                        ),
-                       title: Text(widget.age.toString()),
+                        title:Text('Age',style: TextStyle(color: Colors.grey)),
+                       subtitle: Text(widget.age.toString(),style: TextStyle(color: Colors.black)),
                        ),
                      ),
                      ),

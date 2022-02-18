@@ -59,6 +59,7 @@ class _EditDoctorState extends State<EditDoctor> {
               SizedBox(height: 15,),
                Container(
                  child: TextFormField(
+                   keyboardType: TextInputType.number,
                   controller: _age,
                   decoration: InputDecoration(
                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
@@ -95,6 +96,7 @@ class _EditDoctorState extends State<EditDoctor> {
                  SizedBox(height: 15,),
              Container(
                child: TextFormField(
+                 keyboardType: TextInputType.number,
                   controller: _phone_number,
                   decoration: InputDecoration(
                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
@@ -112,7 +114,21 @@ class _EditDoctorState extends State<EditDoctor> {
                     if(imageResponse.statusCode==200){
                       print('//////////////////////////');
                       print('success');
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>login()));
+                     // Navigator.of(context).push(MaterialPageRoute(builder: (context)=>login()));
+                     showDialog(context: context, builder:(context){
+return AlertDialog(
+  actions: [
+    TextButton(onPressed: (){
+Navigator.of(context).push(MaterialPageRoute(builder: (context)=>login()));
+    },
+     child: Text('OK')
+     )
+  ],
+  title: Text('Success',style: TextStyle(color: Colors.green),),
+  
+  content: Text('The profile edited successfully'),
+);
+             });
                     }
         
                   else{
@@ -250,7 +266,21 @@ return response;
  });
 var response=await request.send();
 if(response.statusCode == 200){
-  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>login()));
+  //Navigator.of(context).push(MaterialPageRoute(builder: (context)=>login()));
+  showDialog(context: context, builder:(context){
+return AlertDialog(
+  actions: [
+    TextButton(onPressed: (){
+Navigator.of(context).push(MaterialPageRoute(builder: (context)=>login()));
+    },
+     child: Text('OK')
+     )
+  ],
+  title: Text('Success',style: TextStyle(color: Colors.green),),
+  
+  content: Text('The profile edited successfully'),
+);
+             });
 }
 else{
   print('fail');

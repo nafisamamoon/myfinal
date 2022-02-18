@@ -43,7 +43,7 @@ return doctors;
               builder: (context,AsyncSnapshot snapshot){
                 if(snapshot.data ==null)
 {
-  return Container(child: Center(child: Text('loadin'),
+  return Container(child: Center(child: CircularProgressIndicator(),
   ),
   );
 } else return Expanded(

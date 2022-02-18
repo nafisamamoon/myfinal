@@ -2,16 +2,16 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-class PatientForSearch extends StatefulWidget {
-  //const PatientForSearch({ Key? key }) : super(key: key);
+class PatientForSearchEmergency extends StatefulWidget {
+  //const PatientForSearchEmergency({ Key? key }) : super(key: key);
 int? id;
-PatientForSearch({this.id});
+PatientForSearchEmergency({this.id});
   @override
-  _PatientForSearchState createState() => _PatientForSearchState();
+  _PatientForSearchEmergencyState createState() => _PatientForSearchEmergencyState();
 }
 
-class _PatientForSearchState extends State<PatientForSearch> {
-  Future<List<Patient>>getOnePatient() async {
+class _PatientForSearchEmergencyState extends State<PatientForSearchEmergency> {
+   Future<List<Patient>>getOnePatient() async {
     final String _url='http://192.168.2.189:8000/api/onepatient/${widget.id}';
 var response=await http.get(Uri.parse(_url));
 var jsonData=jsonDecode(response.body);
@@ -26,7 +26,7 @@ return users;
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+     return Scaffold(
 body:  FutureBuilder(
                 future: getOnePatient(),
           builder: (context,AsyncSnapshot snapshot){
@@ -91,7 +91,7 @@ return Container(
                  leading: Icon(Icons.phone
                  ,color: Colors.teal,
                  ),
-                  title:Text('Patient_phone_number',style: TextStyle(color: Colors.grey)),
+                 title:Text('Patient_phone_number',style: TextStyle(color: Colors.grey)),
                  subtitle: Text(snapshot.data[i].patient_phone_number,style: TextStyle(color: Colors.black)),
                  ),
                ),
@@ -105,7 +105,7 @@ return Container(
                  leading: Icon(Icons.phone
                  ,color: Colors.teal,
                  ),
-                  title:Text('Patient_companion_phone_number',style: TextStyle(color: Colors.grey)),
+                 title:Text('Patient_companion_phone_number',style: TextStyle(color: Colors.grey)),
                  subtitle: Text(snapshot.data[i].patient_companion_phone_number,style: TextStyle(color: Colors.black)),
                  ),
                ),
@@ -127,7 +127,7 @@ return Container(
                  leading: Icon(Icons.description
                  ,color: Colors.teal,
                  ),
-                  title:Text('Diagnosis',style: TextStyle(color: Colors.grey)),
+                 title:Text('Diagnosis',style: TextStyle(color: Colors.grey)),
                  subtitle: Text(snapshot.data[i].diagnosis,style: TextStyle(color: Colors.black)),
                  ),
                ),
@@ -141,7 +141,7 @@ return Container(
                  leading: Icon(Icons.calculate
                  ,color: Colors.teal,
                  ),
-                  title:Text('Age',style: TextStyle(color: Colors.grey)),
+                 title:Text('Age',style: TextStyle(color: Colors.grey)),
                  subtitle: Text(snapshot.data[i].age.toString(),style: TextStyle(color: Colors.black))
                  ),
                ),
@@ -156,7 +156,7 @@ return Container(
                  leading: Icon(Icons.home
                  ,color: Colors.teal,
                  ),
-                  title:Text('Home address',style: TextStyle(color: Colors.grey)),
+                 title:Text('Home address',style: TextStyle(color: Colors.grey)),
                  subtitle: Text(snapshot.data[i].address,style: TextStyle(color: Colors.black)),
                  ),
                ),

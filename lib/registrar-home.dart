@@ -47,7 +47,7 @@ return users;
       appBar: AppBar(
   centerTitle: true,
   backgroundColor: Colors.teal,
-  //title: Text('admin'),
+  title: Text('All patients'),
   actions: [
          
        IconButton(onPressed: (){
@@ -109,11 +109,11 @@ return Container(
   
              SizedBox(height: 9,),
   
-             Container(
+             /*Container(
   
     margin: EdgeInsets.only(left: 40),
   
-    child: Text(snapshot.data[i].email,style: TextStyle(fontSize: 17,wordSpacing: 2,fontWeight: FontWeight.bold),)),
+    child: Text(snapshot.data[i].email,style: TextStyle(fontSize: 17,wordSpacing: 2,fontWeight: FontWeight.bold),)),*/
   
   
   
@@ -198,7 +198,7 @@ child: Icon(Icons.search,color: Colors.teal,),
               builder: (context,AsyncSnapshot snapshot){
                 if(snapshot.data ==null)
 {
-  return Container(child: Center(child: Text('loadin'),
+  return Container(child: Center(child: CircularProgressIndicator(),
   ),
   );
 } else return Expanded(
