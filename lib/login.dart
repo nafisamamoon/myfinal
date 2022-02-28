@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:project/admin-home.dart';
 import 'package:project/doctor-home.dart';
 import 'package:project/emergancy-home.dart';
+import 'package:project/family-home.dart';
 import 'package:project/registrar-home.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
@@ -178,7 +179,10 @@ class _loginState extends State<login> {
     Navigator.of(context).push(MaterialPageRoute(builder: (context)=>EmergancyHome()));
     break;
   }
- 
+  case 5:{
+    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>FamilyHome()));
+    break;
+  }
 }
     //Navigator.of(context).push(MaterialPageRoute(builder: (context)=>alldevice()));
   }
@@ -206,7 +210,10 @@ switch(id){
     Navigator.of(context).push(MaterialPageRoute(builder: (context)=>EmergancyHome()));
     break;
   }
- 
+ case 5:{
+    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>FamilyHome()));
+    break;
+  }
 }
 }
  /*re()async{

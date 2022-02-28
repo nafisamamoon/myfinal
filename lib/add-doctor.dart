@@ -118,7 +118,7 @@ return "ادخل هذا الحقل";
     }
 return null;
   },
-    maxLines: 10,
+    //maxLines: 10,
                    controller: qualificationscontroller,
                     decoration: InputDecoration(
                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),

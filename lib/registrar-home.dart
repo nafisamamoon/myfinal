@@ -168,7 +168,24 @@ child: Icon(Icons.sick,color: Colors.teal,),
            ],
          ),
           SizedBox(height: 24,),
-      
+      Row(
+           children: [
+             Container(
+               margin: EdgeInsets.only(left: 60),
+child: Icon(Icons.add,color: Colors.teal,),
+             ),
+               SizedBox(width: 24,),
+             InkWell(
+               onTap: (){
+              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AddPatient()));
+               },
+               child: Container(
+                // margin: EdgeInsets.only(left: 90),
+                 child: Text('Add Patient',style: TextStyle(fontSize: 17),)),
+             ),
+           ],
+         ),
+         SizedBox(height: 24,),
          Row(
            children: [
              Container(
@@ -182,7 +199,7 @@ child: Icon(Icons.search,color: Colors.teal,),
                },
                child: Container(
                 // margin: EdgeInsets.only(left: 90),
-                 child: Text('search for patient',style: TextStyle(fontSize: 17),)),
+                 child: Text('Search for patient',style: TextStyle(fontSize: 17),)),
              ),
            ],
          ),
@@ -353,7 +370,7 @@ Navigator.of(context).push(MaterialPageRoute(builder: (context)=>OnePatient(id:s
           ],
         ),
       ),
-      floatingActionButton: Container(
+     /* floatingActionButton: Container(
         height: 90,
         width: 90,
         child: FittedBox(
@@ -365,7 +382,7 @@ Navigator.of(context).push(MaterialPageRoute(builder: (context)=>OnePatient(id:s
         Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AddPatient()));
       },),
         ),
-      )
+      )*/
     );
   }
 }

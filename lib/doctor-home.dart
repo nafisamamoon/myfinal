@@ -48,6 +48,8 @@ var phone_number;
     return Scaffold(
       appBar: AppBar(
       backgroundColor: Colors.teal,
+      title: Text('Your Patients'),
+      centerTitle: true,
        actions: [
        IconButton(onPressed: (){
          save('0');

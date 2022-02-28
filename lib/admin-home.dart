@@ -433,6 +433,7 @@ import 'package:project/pat-by-doctor.dart';
 import 'package:project/patient-for-admin.dart';
 import 'package:project/search-admin.dart';
 import 'package:project/show-data.dart';
+import 'package:project/show.dart';
 import 'package:project/test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 class AdminHome extends StatefulWidget {
@@ -676,7 +677,7 @@ child: Icon(Icons.add,color: Colors.teal,)
              SizedBox(width: 40,),
              InkWell(
                onTap: (){
-                 Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ShowData()));
+                 Navigator.of(context).push(MaterialPageRoute(builder: (context)=>show()));
                },
                child: Container(
                  //margin: EdgeInsets.only(left: 90),
@@ -772,7 +773,7 @@ body: Container(
                   //padding: EdgeInsets.only(top: 20),
 
                   ),
-                  Container(child: Text(snapshot.data[i].address,style: TextStyle(wordSpacing: 2,
+                  Container(child: Text('heart specialty',style: TextStyle(wordSpacing: 2,
 
   
                   fontSize:15
