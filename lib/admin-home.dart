@@ -667,7 +667,7 @@ child: Icon(Icons.add,color: Colors.teal,)
            ],
          ),
          SizedBox(height: 24,),
-        /* Row(
+         Row(
            children: [
              Container(
               // margin: EdgeInsets.only(left: 15),
@@ -677,14 +677,14 @@ child: Icon(Icons.add,color: Colors.teal,)
              SizedBox(width: 40,),
              InkWell(
                onTap: (){
-                 Navigator.of(context).push(MaterialPageRoute(builder: (context)=>show()));
+                 Navigator.of(context).push(MaterialPageRoute(builder: (context)=>tok()));
                },
                child: Container(
                  //margin: EdgeInsets.only(left: 90),
                  child: Text('show data',style: TextStyle(fontSize: 17),)),
              ),
            ],
-         )*/
+         )
           
            ],
            ),

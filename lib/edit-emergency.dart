@@ -63,8 +63,8 @@ class _EditEmergencyState extends State<EditEmergency> {
                   controller: _age,
                   decoration: InputDecoration(
                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-                    labelText: 'Age',
-                    hintText: 'age'
+                    labelText: 'Age of the unit',
+                    hintText: 'age of the unit'
                   ),
               ),
                ),
